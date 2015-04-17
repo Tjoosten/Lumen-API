@@ -1,7 +1,9 @@
-<?php namespace App\Http\Controllers;
+<?php
 
-use Laravel\Lumen\Routing\Controller as BaseController;
+  namespace App\Http\Controllers;
 
-class Controller extends BaseController {
-    //
-}
+  use Laravel\Lumen\Routing\Controller as BaseController;
+
+  class Controller extends BaseController {
+      //
+  }
