@@ -21,8 +21,7 @@
       return response()->json([
           'error' => false,
           'soldiers'  => $query->toArray(),
-          200
-        ])->header('Content-Type', 'application/json');
+        ], 200)->header('Content-Type', 'application/json');
     }
 
     /**
@@ -36,8 +35,7 @@
       return response()->json([
           'error'    => false,
           'soldier'  => $query->toArray(),
-          200
-        ])->header('Content-Type', 'application/json');
+        ], 200)->header('Content-Type', 'application/json');
     }
 
   }
