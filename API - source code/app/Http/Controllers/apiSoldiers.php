@@ -17,7 +17,7 @@
      * @return Response
      */
     public function Soldiers() {
-      $soldier = Gesneuvelde::all() ;
+      $soldiers = Gesneuvelde::all() ;
 
       return response()->json([
           'error' => false,
@@ -29,7 +29,9 @@
      * Get a specifuc soldier.
      *
      * @access public
-     * @link   GET //soldiers/{id}
+     * @link   GET /soldiers/{id}
+     * @param  $id, integer, soldiers DB id.
+     * @return bResponse.
      */
     public function Soldier($id) {
       $soldier = Gesneuvelde::find($id);
@@ -40,6 +42,14 @@
         ], 200)->header('Content-Type', 'application/json');
     }
 
+    /**
+     * Delete a soldier.
+     *
+     * @access public
+     * @link   GET /soldiers/delete/{id}
+     * @param  $id, integer, soldiers DB id.
+     * @return Response
+     */
     public function delete() {
       $soldiers = Gesneuvelde::find($id);
       $soldiers->delete();
