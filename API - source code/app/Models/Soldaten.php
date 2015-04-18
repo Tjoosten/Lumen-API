@@ -1,12 +1,18 @@
-<?php namespace App\Models;
+<?php
 
-use Illuminate\Database\Eloquent\Model;
+  namespace App\Models;
 
-class Soldaten extends Model {
-	protected $table = 'Gesneuvelde';
+  use Illuminate\Database\Eloquent\Model;
 
-	public function begraafplaats() {
-		return $this->hasOne('App\Models\Graven', 'GID', 'herdenking_id');
-	}
+  class Soldaten extends Model {
+  	protected $table = 'Gesneuvelde';
 
-}
+  	public function begraafplaats() {
+  		return $this->hasOne('App\Models\Graven', 'GID', 'herdenking_id');
+  	}
+
+    public function regiment() {
+      return $this->hasOne('App\Models\Divisie','ID', 'regiment_id');
+    }
+
+  }

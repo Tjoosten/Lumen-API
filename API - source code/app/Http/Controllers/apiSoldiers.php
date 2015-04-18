@@ -19,7 +19,7 @@
     public function Soldiers() {
       return response()->json([
           'error' => false,
-          'soldiers'  => Soldaten::first()->begraafplaats,
+          'soldiers'  => Soldaten::with('begraafplaats', 'regiment')->get(),
         ], 200)->header('Content-Type', 'application/json');
     }
 
