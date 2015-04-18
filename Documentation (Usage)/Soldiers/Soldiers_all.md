@@ -1,6 +1,11 @@
 [Soldiers]: Get all the soldiers:
 =================================
 
+
+## Output Example
+
+This output result will used for every found record.
+
 ```json
 {  
    "error":false,
