@@ -21,7 +21,7 @@
 
       return response()->json([
           'error' => false,
-          'soldiers'  => $Gesneuvelde->soldiers->toArray(),
+          'soldiers'  => $Gesneuvelde->soldiers->get(),
         ], 200)->header('Content-Type', 'application/json');
     }
 
@@ -39,7 +39,7 @@
 
       return response()->json([
           'error'    => false,
-          'soldier'  => $soldier->toArray(),
+          'soldier'  => $soldier->get(),
         ], 200)->header('Content-Type', 'application/json');
     }
 
