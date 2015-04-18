@@ -17,9 +17,11 @@
      * @return Response
      */
     public function Soldiers() {
+      $soldaten = Soldaten::with('begraafplaats', 'regiment');
+      
       return response()->json([
           'error' => false,
-          'soldiers'  => Soldaten::with('begraafplaats', 'regiment')->get(),
+          'soldiers'  => $soldaten->get(),
         ], 200)->header('Content-Type', 'application/json');
     }
 
