@@ -20,7 +20,8 @@
       $graveyards = Graven::all();
 
       return response()->json([
-        'Error'    => false,
+        'Error'      => false,
+        'Rows'       => count($graveyards),
         'Graveyards' => $graveyards,
       ], 200)->header('Content-Type', 'application/json');
     }
@@ -37,9 +38,18 @@
     public function Graveyard($id) {
       $graveyard = Graven::find($id);
 
-      return response()->json([
-        'Error'    => false,
-        'Graveyard' => $graveyard
-      ], 200)->header('Content-Type','application/json');
+      if(count($graveyard) == 0) {
+        return response()->json([
+          'Error'   => true,
+          'Rows'       => count($graveyard),
+          'message' => 'No graveyard found.',
+        ], 200)->header('Content-type', 'application/json');
+      } else {
+        return response()->json([
+          'Error'    => false,
+          'Rows'       => count($graveyard),
+          'Graveyard' => $graveyard
+        ], 200)->header('Content-Type','application/json');
+      }
     }
   }
