@@ -9,6 +9,6 @@
     protected $table = 'Gesneuvelde';
 
     public function soldiers() {
-        return $this->hasMany('App\Models\Graven', 'begraafplaats_id');
+        return $this->hasMany('App\Models\Soldaten', 'begraafplaats_id', 'begraafplaats_id');
     }
 }
