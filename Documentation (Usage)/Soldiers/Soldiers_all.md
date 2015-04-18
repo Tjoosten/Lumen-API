@@ -1,3 +1,6 @@
+[Soldiers]: Get all the soldiers:
+=================================
+
 ```json
 {  
    "error":false,
