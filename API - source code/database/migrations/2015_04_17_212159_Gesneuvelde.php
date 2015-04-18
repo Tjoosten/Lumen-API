@@ -11,7 +11,7 @@
 		 * @return void
 		 */
 		public function up() {
-			//
+			
 		}
 
 		/**
@@ -20,7 +20,7 @@
 		 * @return void
 		 */
 		public function down() {
-			//
+			Schame::drop('Gesneuvelde');
 		}
 
 	}

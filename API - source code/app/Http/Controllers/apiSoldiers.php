@@ -2,7 +2,7 @@
 
   namespace App\Http\Controllers;
 
-  use App\Models\Gesneuvelde;
+  use App\Models\Soldaten;
   use App\Http\Controllers\Controller;
 
   use Illuminate\Http\Response;
@@ -17,13 +17,14 @@
      * @return Response
      */
     public function Soldiers() {
-      $soldiers = Gesneuvelde::all() ;
+      $Gesneuvelde = new Soldaten;
 
       return response()->json([
           'error' => false,
-          'soldiers'  => $soldiers->toArray(),
+          'soldiers'  => $Gesneuvelde->soldiers->toArray(),
         ], 200)->header('Content-Type', 'application/json');
     }
+
 
     /**
      * Get a specifuc soldier.
@@ -34,7 +35,7 @@
      * @return bResponse.
      */
     public function Soldier($id) {
-      $soldier = Gesneuvelde::find($id);
+      $soldier = Soldaten::find($id);
 
       return response()->json([
           'error'    => false,
@@ -51,7 +52,7 @@
      * @return Response
      */
     public function delete() {
-      $soldiers = Gesneuvelde::find($id);
+      $soldiers = Soldaten::find($id);
       $soldiers->delete();
 
       return response()->json([
