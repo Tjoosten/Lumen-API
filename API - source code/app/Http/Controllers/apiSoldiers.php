@@ -17,11 +17,9 @@
      * @return Response
      */
     public function Soldiers() {
-      $Gesneuvelde = new Soldaten;
-
       return response()->json([
           'error' => false,
-          'soldiers'  => $Gesneuvelde->soldiers->get(),
+          'soldiers'  => Soldaten::all(),
         ], 200)->header('Content-Type', 'application/json');
     }
 
