@@ -11,5 +11,6 @@
 |
 */
 
-$app->get('/', 'App\Http\Controllers\apiSoldiers@Soldiers');
-$app->get('/soldier/{id}', 'App\Http\Controllers\apiSoldiers@Soldier');
+// Routes for the soldiers.
+$app->get('/soldiers/all', 'App\Http\Controllers\apiSoldiers@Soldiers');
+$app->get('/soldiers/{id}', 'App\Http\Controllers\apiSoldiers@Soldier');
