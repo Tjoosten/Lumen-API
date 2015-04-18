@@ -2,6 +2,13 @@
 =================================
 
 
+## Info
+
+**Link**: http://www.domain.be/soldiers/all
+**Method**: `GET`
+**Auth**: *- none*
+**Params:** *- None*
+
 ## Output Example
 
 This output result will used for every found record.
