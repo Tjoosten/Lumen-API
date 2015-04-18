@@ -1,14 +1,12 @@
-<?php
+<?php namespace App\Models;
 
-  namespace App\Models;
+use Illuminate\Database\Eloquent\Model;
 
-  use Illuminate\Database\Eloquent\Model;
+class Soldaten extends Model {
+	protected $table = 'Gesneuvelde';
 
-  class Soldaten extends Model {
+	public function begraafplaats() {
+		return $this->hasOne('App\Models\Graven', 'GID', 'herdenking_id');
+	}
 
-    protected $table = 'Gesneuvelde';
-
-    public function soldiers() {
-        return $this->hasMany('App\Models\Soldaten', 'herdenking_id', 'soldaat_id');
-    }
 }

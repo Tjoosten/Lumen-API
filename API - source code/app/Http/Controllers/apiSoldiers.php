@@ -19,7 +19,7 @@
     public function Soldiers() {
       return response()->json([
           'error' => false,
-          'soldiers'  => Soldaten::all(),
+          'soldiers'  => Soldaten::first()->begraafplaats,
         ], 200)->header('Content-Type', 'application/json');
     }
 
@@ -30,7 +30,7 @@
      * @access public
      * @link   GET /soldiers/{id}
      * @param  $id, integer, soldiers DB id.
-     * @return bResponse.
+     * @return Response.
      */
     public function Soldier($id) {
       $soldier = Soldaten::find($id);
