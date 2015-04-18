@@ -20,8 +20,8 @@
       $graveyards = Graven::all();
 
       return response()->json([
-        'error'    => false,
-        'soldiers' => $graveyards,
+        'Error'    => false,
+        'Graveyards' => $graveyards,
       ], 200)->header('Content-Type', 'application/json');
     }
 
@@ -35,6 +35,11 @@
      * @return Response
      */
     public function Graveyard($id) {
+      $graveyard = Graven::find($id);
 
+      return response()->json([
+        'Error'    => false,
+        'Graveyard' => $graveyard
+      ], 200)->header('Content-Type','application/json');
     }
   }
