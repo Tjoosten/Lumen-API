@@ -4,10 +4,10 @@
 
 ## Info
 
-**Link**: http://www.domain.be/soldiers/all
-**Method**: `GET`
-**Auth**: *- none*
-**Params:** *- None*
+- **Link**: http://www.domain.be/soldiers/all
+- **Method**: `GET`
+- **Auth**: *- none*
+- **Params:** *- None*
 
 ## Output Example
 
