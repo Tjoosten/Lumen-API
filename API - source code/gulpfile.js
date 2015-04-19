@@ -29,15 +29,3 @@ gulp.task('imagemin', function() {
     .pipe(imagemin())
     .pipe(gulp.dest(imgDst));
 });
-
-gulp.task("one", function () {
-  gulp.src("3.txt")
-    .pipe(notify({
-      title:   "Fucker Defuq?",
-      subtitle: "Fallen Soldiers API",
-      message: "This is a message.",
-      sound: "Frog",
-      onLast: true,
-      wait: true
-    }));
-});
