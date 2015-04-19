@@ -1,0 +1,22 @@
+{
+  "name": "API",
+  "version": "1.0.0",
+  "description": "Fallen Soldiers API",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "World",
+    "War",
+    "API"
+  ],
+  "author": "Tim Joosten",
+  "license": "MIT",
+  "dependencies": {
+    "gulp": "^3.8.11"
+  }
+}

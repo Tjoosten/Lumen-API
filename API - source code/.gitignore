@@ -1,3 +1,4 @@
 /lumen.log
 /vendor
+/node_modules
 .env
