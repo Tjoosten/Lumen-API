@@ -1,3 +1,8 @@
+<FilesMatch "\.php$">
+  AddHandler x-httpd-php54 .php
+</FilesMatch>
+
+
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews

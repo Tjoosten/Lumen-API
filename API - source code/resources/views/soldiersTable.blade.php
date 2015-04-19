@@ -1,6 +1,8 @@
 <html>
   <head>
     <title> API Output</title>
+
+    <link rel="stylesheet" href="/css/master.css">
   </head>
   <body>
 
@@ -8,9 +10,10 @@
     <table>
       <thead>
         <tr>
-          <th>#</th>
-          <th>Voornaam:</th>
-          <th>Achternaam:</th>
+          <th class="id">#</th>
+          <th class="Voornaam">Voornaam:</th>
+          <th class="Achternaam">Achternaam:</th>
+          <th></th> {{-- Options --}}
         </tr>
       </thead>
       <tbody>
@@ -19,6 +22,7 @@
             <td><code>#{!! $output->id !!}</code></td>
             <td>{!! $output->Voornaam !!}</td>
             <td>{!! $output->Achternaam !!}</td>
+            <td><a href="/html/soldiers/{!! $output->id !!}">View</a></td>
           </tr>
         @endforeach
       </tbody>

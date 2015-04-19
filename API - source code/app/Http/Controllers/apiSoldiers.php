@@ -37,20 +37,31 @@
     }
 
     /**
-     * Get a specifuc soldier.
+     * Get a specific soldier.
      *
      * @access public
      * @link   GET /soldiers/{id}
      * @param  $id, integer, soldiers DB id.
+     * @param  $pase, string, the parsing option.
      * @return Response.
      */
-    public function Soldier($id) {
-      $soldier = Soldaten::find($id);
+    public function Soldier($parse, $id) {
+      $soldier            = Soldaten::with('begraafplaats', 'regiment')->where('id', $id);
+      $variable['result'] = $soldier->get();
 
-      return response()->json([
-          'error'    => false,
-          'soldier'  => $soldier->get(),
+      if($parse === 'json') {
+        return response()->json([
+            'error'    => false,
+            'soldiers' => $variable['result'],
+          ], 200)->header('Content-Type', 'application/json');
+      } elseif($parse === 'html') {
+        return view('soldiersTable', $variable);
+      } else {
+        return response()->json([
+          'error'   => true,
+          'message' => 'Invalid parse option',
         ], 200)->header('Content-Type', 'application/json');
+      }
     }
 
     /**
