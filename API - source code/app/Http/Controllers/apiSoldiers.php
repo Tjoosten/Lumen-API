@@ -20,8 +20,8 @@
       $soldaten = Soldaten::with('begraafplaats', 'regiment');
 
       return response()->json([
-          'error' => false,
-          'soldiers'  => $soldaten->get(),
+          'error'    => false,
+          'soldiers' => $soldaten->get(),
         ], 200)->header('Content-Type', 'application/json');
     }
 
