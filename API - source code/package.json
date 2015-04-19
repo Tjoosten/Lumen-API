@@ -18,5 +18,10 @@
   "license": "MIT",
   "dependencies": {
     "gulp": "^3.8.11"
+  },
+  "devDependencies": {
+    "gulp-changed": "^1.2.1",
+    "gulp-imagemin": "^2.2.1",
+    "gulp-jshint": "^1.10.0"
   }
 }
