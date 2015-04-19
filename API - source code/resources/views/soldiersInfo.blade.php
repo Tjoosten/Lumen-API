@@ -12,6 +12,7 @@
 
         <strong>Dienst nr: </strong> {!! $output->Stam_nr !!} <br>
         <strong>Regiment ID: </strong> {!! $output->regiment_id !!} <br>
+        <strong>Regiment:</strong> {!! $output['Regiment']->Regiment !!} <br>
       @endforeach
   </body>
 </html>
