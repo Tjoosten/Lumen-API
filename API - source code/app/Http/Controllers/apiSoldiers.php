@@ -13,16 +13,27 @@
      * Display all the soldiers.
      *
      * @access public
-     * @link   GET /soldiers/all
+     * @link   GET /{parse}/soldiers/all
+     * @param  $parse, string, The parsing method.
      * @return Response
      */
-    public function Soldiers() {
-      $soldaten = Soldaten::with('begraafplaats', 'regiment');
+    public function Soldiers($parse) {
+      $soldaten           = Soldaten::with('begraafplaats', 'regiment');
+      $variable['result'] = $soldaten->get();
 
-      return response()->json([
-          'error'    => false,
-          'soldiers' => $soldaten->get(),
+      if($parse === 'json') {
+        return response()->json([
+            'error'    => false,
+            'soldiers' => $variable['result'],
+          ], 200)->header('Content-Type', 'application/json');
+      } elseif($parse === 'html') {
+        return view('soldiersTable', $variable);
+      } else {
+        return response()->json([
+          'error'   => true,
+          'message' => 'Invalid parse option',
         ], 200)->header('Content-Type', 'application/json');
+      }
     }
 
     /**
