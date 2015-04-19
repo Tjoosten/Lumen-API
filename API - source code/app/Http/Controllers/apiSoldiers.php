@@ -55,7 +55,7 @@
             'soldiers' => $variable['result'],
           ], 200)->header('Content-Type', 'application/json');
       } elseif($parse === 'html') {
-        return view('soldiersTable', $variable);
+        return view('soldiersInfo', $variable);
       } else {
         return response()->json([
           'error'   => true,
