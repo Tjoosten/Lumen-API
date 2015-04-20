@@ -13,7 +13,7 @@
 		 */
 		public function up() {
 
-			Schema::create('Gesneuvelde', function($table) {
+			Schema::create('Gesneuvelde', function(Blueprint $table) {
 				$table->increments('id');
 				$table->string('Voornaam', 255);
 				$table->string('Achternaam', 45);
