@@ -8,7 +8,7 @@
   use League\Fractal\Resource\Collection;
   use Illuminate\Http\Response;
 
-  class apiSoldiers extends Controller {
+  class ApiSoldiers extends Controller {
 
     private $fractal;
 

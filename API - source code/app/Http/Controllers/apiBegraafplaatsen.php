@@ -7,7 +7,7 @@
 
   use Illuminate\Http\Response;
 
-  class apiBegraafplaatsen extends Controller {
+  class ApiBegraafplaatsen extends Controller {
 
     /**
      * Display all the graveyards.
