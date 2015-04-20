@@ -4,10 +4,20 @@
 
   use App\Models\Soldaten;
   use App\Http\Controllers\Controller;
-
+  use League\Fractal\Manager;
+  use League\Fractal\Resource\Collection;
   use Illuminate\Http\Response;
 
   class apiSoldiers extends Controller {
+
+    private $fractal;
+
+    /**
+     * Class constructor
+     */
+    public function __construct() {
+      $this->fractal = new Manager();
+    }
 
     /**
      * Display all the soldiers.
@@ -20,12 +30,11 @@
     public function Soldiers($parse) {
       $soldaten           = Soldaten::with('begraafplaats', 'regiment');
       $variable['result'] = $soldaten->get();
+      $resource           = new Collection($variable['result'], $this->transformSoldierCallback());
 
       if($parse === 'json') {
-        return response()->json([
-            'error'    => false,
-            'soldiers' => $variable['result'],
-          ], 200)->header('Content-Type', 'application/json');
+        return response($this->fractal->createData($resource)->toJson(), 200)
+                ->header('Content-Type', 'application/json');
       } elseif($parse === 'html') {
         return view('soldiersTable', $variable);
       } else {
@@ -88,6 +97,26 @@
         'error'   => false,
         'soldier' => 'Soldier deleted',
       ], 200)->header('Content-Type', 'application/json');
+    }
+
+    /**
+     * @access private
+     * @return callable
+     */
+    private function transformSoldierCallback() {
+      return function($data) {
+        return [
+          [
+            'id'                => (int)    $data['id'],
+            'Voornaam'          => (string) $data['Voornaam'],
+            'Achternaam'        => (string) $data['Achternaam'],
+            'Burgerlijke stand' => (string) $data['Burgerlijke_stand'],
+            'Dienst nr'         => (string) $data['Stam_nr'],
+            'Regiment ID'       => (int)    $data['regiment_id'],
+            'Regiment'          => (string) $data['regiment']['Regiment'],
+          ],
+        ];
+      };
     }
 
   }
