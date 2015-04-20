@@ -1,14 +1,17 @@
-// =================================================================================================
+// ===================================================================================================
 // Includes.
-// =================================================================================================
-var gulp       = require('gulp');             // Gulp main package
-var jshint     = require('gulp-jshint');      // Gulp plug-in for checking syntax error in JS files.
-var changed    = require('gulp-changed');     // Gulp plug-in for helping gulp-imagemin.
-var imagemin   = require('gulp-imagemin');    // Gulp plug-in for minify images.
+// ===================================================================================================
+var gulp       = require('gulp');              // Gulp main package
+var jshint     = require('gulp-jshint');       // Gulp plug-in for checking syntax error in JS files.
+var changed    = require('gulp-changed');      // Gulp plug-in for helping gulp-imagemin.
+var imagemin   = require('gulp-imagemin');     // Gulp plug-in for minify images.
+var minifyCSS  = require('gulp-minify-css');   // Glup plug-in for minify'ing your CSS code.
+var sass       = require('gulp-sass');         // Gulp plugin for sass compile.
+var rename     = require('gulp-rename');       // Gulp plugin for renaming files.
 
-// =================================================================================================
+// ===================================================================================================
 // TASK METHODS.
-// =================================================================================================
+// ===================================================================================================
 
 // jshint check in the JAvascript files for syntax errors.
 // [CLI Call] = gulp jshint
@@ -28,4 +31,14 @@ gulp.task('imagemin', function() {
     .pipe(changed(imgDst))
     .pipe(imagemin())
     .pipe(gulp.dest(imgDst));
+});
+
+// Compile SASS to CSS
+// [CLI Call] = gulp sass
+gulp.task('sass', function() {
+  gulp.src('./resources/assets/sass/**/*.scss')
+      .pipe(sass())
+      .pipe(minifyCSS())
+      .pipe(rename('master.min.css'))
+      .pipe(gulp.dest('./public/css/'));
 });
