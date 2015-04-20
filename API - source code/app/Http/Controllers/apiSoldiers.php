@@ -5,6 +5,9 @@
   use App\Models\Soldaten;
   use App\Http\Controllers\Controller;
 
+  use League\Fractal\Manager;
+  use League\Fractal\Resource\Collection;
+
   use Illuminate\Http\Response;
 
   class apiSoldiers extends Controller {
@@ -20,12 +23,22 @@
     public function Soldiers($parse) {
       $soldaten           = Soldaten::with('begraafplaats', 'regiment');
       $variable['result'] = $soldaten->get();
+      $fractal = new Manager();
+
+      $resource = new Collection($variable['result'], function($Data) {
+        return [
+          [
+            'id'                => (int)    $Data['id'],
+            'Voornaam'          => (string) $Data['Voornaam'],
+            'Achternaam'        => (string) $Data['Achternaam'],
+            'Burgerlijke stand' => (string) $Data['Burgerlijke_stand']
+          ],
+        ];
+      });
 
       if($parse === 'json') {
-        return response()->json([
-            'error'    => false,
-            'soldiers' => $variable['result'],
-          ], 200)->header('Content-Type', 'application/json');
+        return response($fractal->createData($resource)->toJson(), 200)
+                ->header('Content-Type', 'application/json');
       } elseif($parse === 'html') {
         return view('soldiersTable', $variable);
       } else {
