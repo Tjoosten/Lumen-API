@@ -16,7 +16,7 @@
      * @link   GET /Graveyards/all
      * @return Response
      */
-    public function Graveyards() {
+    public function graveyards() {
       $graveyards = Graven::all();
 
       return response()->json([
@@ -35,7 +35,7 @@
      * @param  $id, integer, the graveyards id.
      * @return Response
      */
-    public function Graveyard($id) {
+    public function graveyard($id) {
       $graveyard = Graven::find($id);
 
       if(count($graveyard) == 0) {

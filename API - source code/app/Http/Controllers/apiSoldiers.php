@@ -27,7 +27,7 @@
      * @param  $parse, string, The parsing method.
      * @return Response
      */
-    public function Soldiers($parse) {
+    public function soldiers($parse) {
       $soldaten           = Soldaten::with('begraafplaats', 'regiment');
       $variable['result'] = $soldaten->get();
       $resource           = new Collection($variable['result'], $this->transformSoldierCallback());
@@ -54,7 +54,7 @@
      * @param  $pase, string, the parsing option.
      * @return Response.
      */
-    public function Soldier($parse, $id) {
+    public function soldier($parse, $id) {
       $soldier            = Soldaten::with('begraafplaats', 'regiment')->where('id', $id);
       $variable['result'] = $soldier->get();
 
