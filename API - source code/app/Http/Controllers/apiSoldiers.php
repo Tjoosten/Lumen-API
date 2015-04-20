@@ -33,19 +33,7 @@
       $soldaten           = Soldaten::with('begraafplaats', 'regiment');
       $variable['result'] = $soldaten->get();
 
-      $resource = new Collection($variable['result'], function($Data) {
-        return [
-          [
-            'id'                => (int)    $Data['id'],
-            'Voornaam'          => (string) $Data['Voornaam'],
-            'Achternaam'        => (string) $Data['Achternaam'],
-            'Burgerlijke stand' => (string) $Data['Burgerlijke_stand'],
-            'Dienst nr'         => (string) $Data['Stam_nr'],
-            'Regiment ID'       => (int)    $Data['regiment_id'],
-            'Regiment'          => (string) $Data['regiment']['Regiment'],
-          ],
-        ];
-      });
+      $resource = new Collection($variable['result'], $this->transformSoldierCallback());
 
       if($parse === 'json') {
         return response($this->fractal->createData($resource)->toJson(), 200)
@@ -58,6 +46,25 @@
           'message' => 'Invalid parse option',
         ], 200)->header('Content-Type', 'application/json');
       }
+    }
+
+      /**
+       * @return callable
+       */
+      private function transformSoldierCallback() {
+        return function($data) {
+            return [
+                [
+                    'id'                => (int)    $data['id'],
+                    'Voornaam'          => (string) $data['Voornaam'],
+                    'Achternaam'        => (string) $data['Achternaam'],
+                    'Burgerlijke stand' => (string) $data['Burgerlijke_stand'],
+                    'Dienst nr'         => (string) $data['Stam_nr'],
+                    'Regiment ID'       => (int)    $data['regiment_id'],
+                    'Regiment'          => (string) $data['regiment']['Regiment'],
+                ],
+            ];
+        };
     }
 
     /**
