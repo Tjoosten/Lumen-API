@@ -49,6 +49,14 @@
       $soldier            = Soldaten::with('begraafplaats', 'regiment')->where('id', $id);
       $variable['result'] = $soldier->get();
 
+      if(count($variable['result']) === 0) {
+        return response()->json([
+          'Error'   => true,
+          'Rows'    => count($variable['result']),
+          'message' => 'No soldier found.',
+        ], 200)->header('Content-type', 'application/json');
+      }
+
       if($parse === 'json') {
         return response()->json([
             'error'    => false,

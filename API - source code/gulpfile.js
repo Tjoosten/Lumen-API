@@ -45,3 +45,12 @@ gulp.task('sass', function() {
       .pipe(rename('master.min.css'))
       .pipe(gulp.dest('./public/css/'));
 });
+
+// ===================================================================================================
+// WATCHER.
+// ===================================================================================================
+
+gulp.task('watch', function() {
+  gulp.watch('./resources/assets/js/*.js', ['jshint']);
+  gulp.watch('./resources/assets/sess/*.scss', ['sass']);
+});
