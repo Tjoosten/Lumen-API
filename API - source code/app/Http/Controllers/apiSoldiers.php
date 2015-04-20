@@ -110,10 +110,31 @@
             'id'                => (int)    $data['id'],
             'Voornaam'          => (string) $data['Voornaam'],
             'Achternaam'        => (string) $data['Achternaam'],
+            'Geslacht'          =>
             'Burgerlijke stand' => (string) $data['Burgerlijke_stand'],
+            'Geboorte datum'    => (string) $data[''],
+            'Geboorte plaats'   => (string) $data[''],
+
+            'Overleden locatie' =>
+            'Overleden datum'   =>
+            'Overleden locatie' =>
+            'Doodsoorzaak'      =>
+            'Graf referentie'   =>
+
+            'begraafplaats id'  =>
+            'begraafplaats'     =>
+            'lengtegraad'       =>
+            'breedtegraad'      =>
+            'type'              =>
+
+            'Rang'              =>
+            'Dienst'            =>
+            'Eenheid'           =>
             'Dienst nr'         => (string) $data['Stam_nr'],
             'Regiment ID'       => (int)    $data['regiment_id'],
             'Regiment'          => (string) $data['regiment']['Regiment'],
+
+            'Notitie'           =>
           ],
         ];
       };
