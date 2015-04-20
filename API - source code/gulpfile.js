@@ -24,20 +24,23 @@ gulp.task('jshint', function() {
 // Minify new images
 // [CLI Call] = gulp imagemin
 gulp.task('imagemin', function() {
-  var imgSrc = 'resources/assets/img/**/*',
-      imgDst = 'public/assets/img';
+  var imgSrc = 'resources/assets/img/**/*';
+  var imgDst = 'public/assets/img';
 
   gulp.src(imgSrc)
-    .pipe(changed(imgDst))
-    .pipe(imagemin())
-    .pipe(gulp.dest(imgDst));
+      .pipe(changed(imgDst))
+      .pipe(imagemin())
+      .pipe(gulp.dest(imgDst));
 });
 
 // Compile SASS to CSS
 // [CLI Call] = gulp sass
 gulp.task('sass', function() {
-  gulp.src('./resources/assets/sass/**/*.scss')
-      .pipe(sass())
+  gulp.src('./resources/assets/sass/master.scss')
+      .pipe(sass({
+          includePaths: ['./resources/assets/sass'],
+          errLogToConsole: true
+        }))
       .pipe(minifyCSS())
       .pipe(rename('master.min.css'))
       .pipe(gulp.dest('./public/css/'));
