@@ -13,6 +13,18 @@
   class apiSoldiers extends Controller {
 
     /**
+     *  @var $fractal;
+     */
+    private $fractal;
+
+    /**
+     * Class constructor
+     */
+    public function __construct() {
+      $this->fractal = new Manager();
+    }
+
+    /**
      * Display all the soldiers.
      *
      * @access public
@@ -23,7 +35,6 @@
     public function Soldiers($parse) {
       $soldaten           = Soldaten::with('begraafplaats', 'regiment');
       $variable['result'] = $soldaten->get();
-      $fractal = new Manager();
 
       $resource = new Collection($variable['result'], function($Data) {
         return [
@@ -31,13 +42,14 @@
             'id'                => (int)    $Data['id'],
             'Voornaam'          => (string) $Data['Voornaam'],
             'Achternaam'        => (string) $Data['Achternaam'],
-            'Burgerlijke stand' => (string) $Data['Burgerlijke_stand']
+            'Burgerlijke stand' => (string) $Data['Burgerlijke_stand'],
+            'Dienst nr'         => (string) $Data['Stam_nr'],
           ],
         ];
       });
 
       if($parse === 'json') {
-        return response($fractal->createData($resource)->toJson(), 200)
+        return response($this->fractal->createData($resource)->toJson(), 200)
                 ->header('Content-Type', 'application/json');
       } elseif($parse === 'html') {
         return view('soldiersTable', $variable);
