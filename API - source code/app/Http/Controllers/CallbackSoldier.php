@@ -12,8 +12,8 @@
      */
     public function transformNoSoldier() {
       return [
-        'error'   => true,
-        'message' => 'Invalid parse option',
+        'error'   => (bool) true,
+        'message' => (string) 'Invalid parse option',
         ];
     }
 
