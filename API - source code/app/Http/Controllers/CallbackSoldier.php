@@ -2,9 +2,7 @@
 
   namespace App\Http\Controllers;
 
-  use Laravel\Lumen\Routing\Controller as BaseController;
-
-  class CallbackSoldier extends BaseController {
+  class CallbackSoldier extends Controller {
 
     /**
      * [Failure]:

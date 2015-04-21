@@ -2,58 +2,50 @@
 
 namespace App\Http\Controllers;
 
-use Laravel\Lumen\Routing\Controller as BaseController;
-
-Class ApiVarious extends BaseController {
-
-  // Constants to define our api information.
-  const VERSION     = "1.0.*-dev";
-  const DEVELOPER   = "";
-  const EMAIL       = "",
-  const GIT         = "",
-  const LICENSE     = "",
-  const DOCS_CODE   = "",
-  const DOCS_USEAGE = "",
+Class ApiVarious extends Controller {
 
   /**
-   * frontapge controller
+   * frontapge controller & returns API info
    *
    * @access public
-   * @link   GET /
+   * @link   GET /{parse}
+   * @param  $parse, sting, the output
    * @return Response.
    */
-  public function frontpage() {
-    return response()->json([
-      'Error'   => false,
-      'Message' => 'Fallen Soldiers API'
-    ], 200)->header('Content-Type', 'application/json');
-  }
+  public function frontpage($parse) {
 
-  /**
-   * API Info
-   *
-   * Display the information of the API.
-   *
-   * @access public
-   * @link /{pars}/info
-   * @return
-   */
-  public function info($parse) {
-    // Output layout in the controller becasue it is only one layout.
-    // And no callback method needed.
+    // Set constant to variables.
+    $information = [
+        'name'      => ApiVarious::NAME,
+        'version'   => ApiVarious::VERSION,
+        'developer' => ApiVarious::DEVELOPER,
+        'email'     => ApiVarious::EMAIL,
+        'git'       => ApiVarious::GIT,
+        'license'   => ApiVarious::LICENSE,
+        'docsCode'  => ApiVarious::DOCS_CODE,
+        'docsUsage' => ApiVarious::DOCS_USAGE,
+      ];
 
     if($parse === 'json') {
       return response()->json([
-        'Error'   => false,
-        'Version' => ApiVarious::VERSION,
+        'Name'           => $information['name'],
+        'Version'        => $information['version'],
+        'Developer'      => $information['developer'],
+        'Email'          => $information['email'],
+        'GitHub'         => $information['git'],
+        'license'        => $information['license'],
+        'documentation'  => [ $information['docsCode'], $information['docsUsage'] ],
       ], 200)->header('Content-Type', 'application/json');
-    } elseif($paser === 'html') {
-
+    } elseif($parse === 'html') {
+      return view('frontpage', $information);
+    } elseif($parse === 'xml') {
+      return response(view('xml.frontpage', $information), 200)
+              ->header('Content-Type', 'text/xml');
     } else {
-      return reponse()->json([
-
-        ]);
+      return response()->json([
+        'error'   => true,
+        'message' => 'Invalid parse option',
+      ], 200)->header('Content-Type', 'application\json');
     }
   }
-
 }

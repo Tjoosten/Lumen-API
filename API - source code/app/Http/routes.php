@@ -12,7 +12,7 @@
 */
 
 // Misc routes.
-$app->get('/', 'App\Http\Controllers\ApiVarious@frontpage');
+$app->get('/{parse}', 'App\Http\Controllers\ApiVarious@frontpage');
 
 // Routes for the soldiers.
 $app->get('/{parse}/soldiers/all', 'App\Http\Controllers\ApiSoldiers@soldiers');
