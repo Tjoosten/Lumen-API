@@ -11,6 +11,9 @@
 |
 */
 
+// Misc routes.
+$app->get('/', 'App\Http\Controllers\ApiVarious@frontpage');
+
 // Routes for the soldiers.
 $app->get('/{parse}/soldiers/all', 'App\Http\Controllers\ApiSoldiers@soldiers');
 $app->get('/{parse}/soldiers/{id}', 'App\Http\Controllers\ApiSoldiers@soldier');
