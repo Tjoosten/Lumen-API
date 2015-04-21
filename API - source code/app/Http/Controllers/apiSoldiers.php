@@ -32,7 +32,7 @@
       $variable['result'] = $soldaten->get();
       $resource           = new Collection($variable['result'], $this->transformSoldierCallback());
 
-      if($parse === 'json') {
+      if($parse === 'json') {  
         return response($this->fractal->createData($resource)->toJson(), 200)
                 ->header('Content-Type', 'application/json');
       } elseif($parse === 'html') {

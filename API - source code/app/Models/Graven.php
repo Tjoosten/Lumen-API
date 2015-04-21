@@ -14,4 +14,12 @@ class Graven extends Model {
    */
   protected $table = 'Begraafplaatsen';
 
+  /**
+   * Hidden columns
+   *
+   * @access protected
+   * @var    $hidden
+   */
+  protected $hidden = ['updated_at', 'created_at'];
+
 }

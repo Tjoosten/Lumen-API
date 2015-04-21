@@ -14,4 +14,12 @@ class Divisie extends Model {
    */
   protected $table = 'Regimenten';
 
+  /**
+   * Hidden columns
+   *
+   * @access protected
+   * @var    $hidden
+   */
+  protected $hidden = ['updated_at', 'created_at'];
+
 }
