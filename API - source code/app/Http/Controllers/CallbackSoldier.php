@@ -7,6 +7,19 @@
   class CallbackSoldier extends BaseController {
 
     /**
+     * [Failure]:
+     *
+     * @access public
+     * @return callable.
+     */
+    public function transformNoSoldier() {
+      return [
+        'error'   => true,
+        'message' => 'Invalid parse option',
+        ];
+    }
+
+    /**
      * [Success]: Callback for the soldier side.
      *
      * @access public
