@@ -8,7 +8,7 @@
   use League\Fractal\Resource\Collection;
   use Illuminate\Http\Response;
 
-  class ApiSoldiers extends Controller {
+  class ApiSoldiers extends CallbackSoldier {
 
     private $fractal;
 
@@ -30,10 +30,10 @@
     public function soldiers($parse) {
       $soldaten           = Soldaten::with('begraafplaats', 'regiment');
       $variable['result'] = $soldaten->get();
-      $resource           = new Collection($variable['result'], $this->transformSoldierCallback());
+      $outputLayout       = new Collection($variable['result'], $this->transformSoldierCallback());
 
-      if($parse === 'json') {  
-        return response($this->fractal->createData($resource)->toJson(), 200)
+      if($parse === 'json') {
+        return response($this->fractal->createData($outputLayout)->toJson(), 200)
                 ->header('Content-Type', 'application/json');
       } elseif($parse === 'html') {
         return view('soldiersTable', $variable);
@@ -97,49 +97,6 @@
         'error'   => false,
         'soldier' => 'Soldier deleted',
       ], 200)->header('Content-Type', 'application/json');
-    }
-
-    /**
-     * Callback for the soldier side.
-     *
-     * @access private
-     * @return callable
-     */
-    private function transformSoldierCallback() {
-      return function($data) {
-        return [
-          [
-            'id'                => (int)    $data['id'],
-            'Voornaam'          => (string) $data['Voornaam'],
-            'Achternaam'        => (string) $data['Achternaam'],
-            'Geslacht'          => (string) $data['Geslacht'],
-            'Burgerlijke stand' => (string) $data['Burgerlijke_stand'],
-            'Geboorte datum'    => (string) $data['Geboren_datum'],
-            'Geboorte plaats'   => (string) $data['Geboren_plaats'],
-
-            'Overleden plaats'  => (string) $data['Overleden_plaats'],
-            'Overleden datum'   => (string) $data['Overleden_datum'],
-            'Overleden locatie' => (string) $data['Overleden_locatie'],
-            'Doodsoorzaak'      => (string) $data['Doodsoorzaak'],
-            'Graf referentie'   => (string) $data['Graf_referentie'],
-
-            'begraafplaats id'  => (int)    $data['herdenking_id'],
-            'begraafplaats'     => (string) $data['begraafplaats']['Begraafplaats'],
-            'lengtegraad'       => (string) $data['begraafplaats']['Lengtegraad'],
-            'breedtegraad'      => (string) $data['begraafplaats']['Breedtegraad'],
-            'type'              => (string) $data['begraafplaats']['Type'],
-
-            'Rang'              => (string) $data['Rang'],
-            'Dienst'            => (string) $data['Dienst'],
-            'Eenheid'           => (string) $data['Eenheid'],
-            'Dienst nr'         => (string) $data['Stam_nr'],
-            'Regiment ID'       => (int)    $data['regiment_id'],
-            'Regiment'          => (string) $data['regiment']['Regiment'],
-
-            'Notitie'           => (string) $data['Notitie']
-          ],
-        ];
-      };
     }
 
   }
