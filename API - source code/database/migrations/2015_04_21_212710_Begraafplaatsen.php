@@ -13,12 +13,12 @@
 		public function up() {
 
 			Schema::create('Gesneuvelde', function(Blueprint $table) {
-				$this->increments('id');
-				$this->text('Begraafplaats');
-				$this->string('Lengtegraad', 255);
-				$this->string('Breedtegraad', 255);
-				$this->string('Type', 45);
-				$this->timestamps();
+				$table->increments('id');
+				$table->text('Begraafplaats');
+				$table->string('Lengtegraad', 255);
+				$table->string('Breedtegraad', 255);
+				$table->string('Type', 45);
+				$table->timestamps();
 			});
 
 		}
