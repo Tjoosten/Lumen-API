@@ -3,7 +3,6 @@
   namespace App\Http\Controllers;
 
   use App\Models\Soldaten;
-  use App\Http\Controllers\Controller;
   use League\Fractal\Manager;
   use League\Fractal\Resource\Collection;
   use Illuminate\Http\Response;
