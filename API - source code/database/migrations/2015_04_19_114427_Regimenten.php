@@ -12,11 +12,13 @@
 		 * @return void
 		 */
 		public function up() {
+
 			Schema::create('Regimenten', function(Blueprint $table) {
 				$table->increments('id');
 				$table->string('Regiment');
 				$table->timestamps();
 			});
+			
 		}
 
 		/**
