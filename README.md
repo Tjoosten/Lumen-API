@@ -1,5 +1,7 @@
 ## Lumen API
 
+**THIS PROJECT IS NOT MAINTAINED ANYMORE**
+
 Lumen APi is een gebouwd op het Lumen framework van laravel.
 
 ### Documentation
